@@ -24,14 +24,13 @@ export default class AnimaNumeros {
     }, 25 * Math.random());
   }
 
-  // Ativa incrementar número para cada número do dom
+  // Ativa incrementar número para cada
+  // número selecionado do dom
   animaNumeros() {
-    this.numeros.forEach((numero) =>
-      this.constructor.incrementarNumero(numero)
-    );
+    this.numeros.forEach(numero => this.constructor.incrementarNumero(numero));
   }
 
-  // Função que ocorre quando a mutação ocorrer
+  // Função que ocorre quando a mutações ocorrer
   handleMutation(mutation) {
     if (mutation[0].target.classList.contains(this.observerClass)) {
       this.observer.disconnect();
@@ -39,8 +38,8 @@ export default class AnimaNumeros {
     }
   }
 
-  // Adiciona o Mutation Observer para verificar
-  // quando a classe ativo é adicionada ao elemento target
+  // Adiciona o MutationObserver para verificar
+  // quanto a classe ativo é adiciona ao element target
   addMutationObserver() {
     this.observer = new MutationObserver(this.handleMutation);
     this.observer.observe(this.observerTarget, { attributes: true });

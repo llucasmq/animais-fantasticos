@@ -1,14 +1,14 @@
-import debounce from "./debounce.js";
+import debounce from './debounce.js';
 
 export default class ScrollAnima {
   constructor(sections) {
     this.sections = document.querySelectorAll(sections);
     this.windowMetade = window.innerHeight * 0.6;
 
-    this.checkDistance = debounce(this.checkDistance.bind(this), 100);
+    this.checkDistance = debounce(this.checkDistance.bind(this), 50);
   }
 
-  // Pega a distancia de cada item em relação
+  // Pega a distância de cada item em relação
   // ao topo do site
   getDistance() {
     this.distance = [...this.sections].map((section) => {
@@ -20,14 +20,14 @@ export default class ScrollAnima {
     });
   }
 
-  // Verifica a distancia em cada objeto
+  // Verifica a distância em cada objeto
   // em relação ao scroll do site
   checkDistance() {
     this.distance.forEach((item) => {
       if (window.pageYOffset > item.offset) {
-        item.element.classList.add("ativo");
-      } else if (item.element.classList.contains("ativo")) {
-        item.element.classList.remove("ativo");
+        item.element.classList.add('ativo');
+      } else if (item.element.classList.contains('ativo')) {
+        item.element.classList.remove('ativo');
       }
     });
   }
@@ -36,13 +36,13 @@ export default class ScrollAnima {
     if (this.sections.length) {
       this.getDistance();
       this.checkDistance();
-      window.addEventListener("scroll", this.checkDistance);
+      window.addEventListener('scroll', this.checkDistance);
     }
     return this;
   }
 
   // Remove o event de scroll
   stop() {
-    window.removeEventListener("scroll", this.checkDistance);
+    window.removeEventListener('scroll', this.checkDistance);
   }
 }
